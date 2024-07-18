@@ -4,32 +4,29 @@ const { StatusCodes } = require("http-status-codes");
 
 const prisma = new PrismaClient();
 
+const getVehicleTypes = async (req, res) => {
+  const { wheels } = req.params;
 
-
-const getVehicleByType = async (req, res) => {
-  const { category } = req.query;
-
-  if (!category) {
+  if (!wheels) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ error: "Please provide a category parameter." });
+      .json({ error: "Please provide the number of wheels." });
   }
 
   try {
     const vehicleTypes = await prisma.vehicleType.findMany({
       where: {
-        category,
+        category: wheels == 2 ? "Two-Wheeler" : "Four-Wheeler",
       },
-      include: { Vehicle: true },
     });
 
     if (vehicleTypes.length === 0) {
       return res
         .status(StatusCodes.NOT_FOUND)
-        .json({ error: `No vehicles found for category '${category}'.` });
+        .json({ error: `No vehicle types found for ${wheels} wheels.` });
     }
 
-    res.json(vehicleTypes);
+    res.status(StatusCodes.OK).json(vehicleTypes);
   } catch (error) {
     console.error("Error fetching vehicle types:", error);
     res
@@ -38,6 +35,40 @@ const getVehicleByType = async (req, res) => {
   }
 };
 
+const getVehicles = async (req, res) => {
+  const { typeId } = req.params;
+
+  console.log(typeId, "typeId");
+
+  if (!typeId) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "Please provide a typeId parameter." });
+  }
+
+  try {
+    const vehicles = await prisma.vehicle.findMany({
+      where: {
+        typeId: parseInt(typeId),
+      },
+    });
+
+    if (vehicles.length === 0) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: `No vehicles found for typeId '${typeId}'.` });
+    }
+
+    res.json(vehicles);
+  } catch (error) {
+    console.error("Error fetching vehicles:", error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal server error." });
+  }
+};
+
 module.exports = {
-  getVehicleByType,
+  getVehicleTypes,
+  getVehicles,
 };
