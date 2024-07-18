@@ -38,7 +38,6 @@ const getVehicleTypes = async (req, res) => {
 const getVehicles = async (req, res) => {
   const { typeId } = req.params;
 
-  console.log(typeId, "typeId");
 
   if (!typeId) {
     return res

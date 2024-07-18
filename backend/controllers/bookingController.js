@@ -6,8 +6,6 @@ const prisma = new PrismaClient();
 const createBooking = async (req, res) => {
   const { firstName, lastName, vehicleId, startDate, endDate } = req.body;
 
-  console.log(req.body, "body in backend");
-
   try {
     if (!vehicleId || !startDate || !endDate) {
       return res
