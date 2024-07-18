@@ -4,9 +4,13 @@
   "description": "Backend for vehicle booking system",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node index.js",
+    "prisma": "prisma",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "Your Name",
