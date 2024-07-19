@@ -17,7 +17,10 @@ A comprehensive vehicle renting system built with React, Material UI, and a Node
 
 ## Demo
 
-Check out the live demo of application: [Demo Link](https://rent-vehicle-frontend.vercel.app/)
+Check out the live demo of the frontend application hosted on Vercel: [Demo Link](https://rent-vehicle-frontend.vercel.app/)
+
+The backend API is also deployed on Vercel: [Backend API](https://rent-vehicle-backend.vercel.app/test)
+
 
 
 ## Getting Started
