@@ -5,7 +5,7 @@ const API_BASE_URL = "https://rent-vehicle-backend.vercel.app/api";
 
 export const getVehicleTypes = async (wheels) => {
   const response = await axios.get(`${API_BASE_URL}/vehicle-types/${wheels}`);
-  return response.data; 
+  return response.data;
 };
 
 export const getVehicles = async (typeId) => {
