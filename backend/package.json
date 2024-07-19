@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "build": "npm run build",
     "prisma": "prisma",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "migrate": "prisma migrate deploy",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "Satan Sharma",
